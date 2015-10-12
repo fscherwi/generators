@@ -8,6 +8,12 @@ with or without modification, are permitted. See the Creative
 Commons Zero (CC0 1.0) License for more details.
 */
 
+/*jshint -W004 */
+/*jshint -W019 */
+/*jshint -W041 */
+/*jshint -W043 */
+/*jshint -W061 */
+
 var Device = require('./Device');
 
 IPConnection.FUNCTION_ENUMERATE = 254;
