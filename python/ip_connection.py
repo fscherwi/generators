@@ -16,7 +16,7 @@ except ImportError:
 
 # Queue for python 2, queue for python 3
 try:
-    from Queue import Queue, Empty
+    from queue import Queue, Empty
 except ImportError:
     from queue import Queue, Empty
 
@@ -910,9 +910,9 @@ class IPConnection:
 
         def pack_string(f, d):
             if sys.hexversion < 0x03000000:
-                if isinstance(d, unicode):
+                if isinstance(d, str):
                     f = f.replace('s', 'B').replace('c', 'B')
-                    l = map(ord, d)
+                    l = list(map(ord, d))
                     p = f.replace('B', '')
                     if len(p) == 0:
                         p = '1'
@@ -922,7 +922,7 @@ class IPConnection:
                     return struct.pack('<' + f, d)
             else:
                 if isinstance(d, str):
-                    return struct.pack('<' + f, bytes(map(ord, d)))
+                    return struct.pack('<' + f, bytes(list(map(ord, d))))
                 else:
                     return struct.pack('<' + f, d)
 

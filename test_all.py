@@ -20,7 +20,7 @@ for binding in bindings:
     sys.path.append(path_binding)
     module = __import__('test_{0}_bindings'.format(binding))
 
-    print("### testing {0} bindings:".format(binding))
+    print(("### testing {0} bindings:".format(binding)))
 
     success = module.run(path_binding)
 

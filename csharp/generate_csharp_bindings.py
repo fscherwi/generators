@@ -31,7 +31,7 @@ from xml.sax.saxutils import escape
 
 sys.path.append(os.path.split(os.getcwd())[0])
 import common
-import csharp_common
+from . import csharp_common
 
 class CSharpBindingsDevice(csharp_common.CSharpDevice):
     def get_csharp_import(self):

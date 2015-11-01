@@ -453,5 +453,5 @@ def generate(bindings_root_directory, language):
 
 if __name__ == "__main__":
     for language in ['en', 'de']:
-        print("=== Generating %s ===" % language)
+        print(("=== Generating %s ===" % language))
         generate(os.getcwd(), language)

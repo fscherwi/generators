@@ -29,7 +29,7 @@ if 'bindings' in args:
             continue
 
         module = __import__('generate_{0}_bindings'.format(binding))
-        print("\nGenerating bindings for {0}:".format(binding))
+        print(("\nGenerating bindings for {0}:".format(binding)))
         module.generate(os.path.join(path, binding))
 
 # examples
@@ -41,10 +41,10 @@ if 'examples' in args:
         try:
             module = __import__('generate_{0}_examples'.format(binding))
         except ImportError:
-            print("\nNo example generator for {0}".format(binding))
+            print(("\nNo example generator for {0}".format(binding)))
             continue
 
-        print("\nGenerating examples for {0}:".format(binding))
+        print(("\nGenerating examples for {0}:".format(binding)))
         module.generate(os.path.join(path, binding))
 
 # doc
@@ -52,14 +52,14 @@ if 'doc' in args:
     for binding in bindings:
         module = __import__('generate_{0}_doc'.format(binding))
         for lang in ['en', 'de']:
-            print("\nGenerating '{0}' documentation for {1}:".format(lang, binding))
+            print(("\nGenerating '{0}' documentation for {1}:".format(lang, binding)))
             module.generate(os.path.join(path, binding), lang)
 
 # zip
 if 'zip' in args:
     def run_zip_generator(path, binding):
         module = __import__('generate_{0}_zip'.format(binding))
-        print("\nGenerating ZIP for {0}:".format(binding))
+        print(("\nGenerating ZIP for {0}:".format(binding)))
         module.generate(os.path.join(path, binding))
 
     if socket.gethostname() == 'tinkerforge.com':

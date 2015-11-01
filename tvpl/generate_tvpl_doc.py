@@ -502,7 +502,7 @@ class TVPLDocGenerator(common.DocGenerator):
 
     def generate(self, device):
         return
-        print deivce.get_underscore_name()
+        print((deivce.get_underscore_name()))
         rst = open(device.get_doc_rst_path(), 'wb')
         rst.write(device.get_tvpl_doc())
         rst.close()
@@ -521,5 +521,5 @@ def generate(bindings_root_directory, language):
 
 if __name__ == "__main__":
     for language in ['en', 'de']:
-        print("=== Generating %s ===" % language)
+        print(("=== Generating %s ===" % language))
         generate(os.getcwd(), language)

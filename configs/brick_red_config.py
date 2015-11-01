@@ -70,18 +70,18 @@ PIPE_FLAG_CONSTANTS = ('PipeFlag', 'pipe_flag', [('NonBlockingRead', 'non_blocki
 
 # the permission bit values match the UNIX permission bit values, this allows
 # to use the normal octal way to write them, e.g. 0755
-FILE_PERMISSION_CONSTANTS = ('FilePermission', 'file_permission', [('UserAll', 'user_all', 00700),
-                                                                   ('UserRead', 'user_read', 00400),
-                                                                   ('UserWrite', 'user_write', 00200),
-                                                                   ('UserExecute', 'user_execute', 00100),
-                                                                   ('GroupAll', 'group_all', 00070),
-                                                                   ('GroupRead', 'group_read', 00040),
-                                                                   ('GroupWrite', 'group_write', 00020),
-                                                                   ('GroupExecute', 'group_execute', 00010),
-                                                                   ('OthersAll', 'others_all', 00007),
-                                                                   ('OthersRead', 'others_read', 00004),
-                                                                   ('OthersWrite', 'others_write', 00002),
-                                                                   ('OthersExecute', 'others_execute', 00001)])
+FILE_PERMISSION_CONSTANTS = ('FilePermission', 'file_permission', [('UserAll', 'user_all', 0o0700),
+                                                                   ('UserRead', 'user_read', 0o0400),
+                                                                   ('UserWrite', 'user_write', 0o0200),
+                                                                   ('UserExecute', 'user_execute', 0o0100),
+                                                                   ('GroupAll', 'group_all', 0o0070),
+                                                                   ('GroupRead', 'group_read', 0o0040),
+                                                                   ('GroupWrite', 'group_write', 0o0020),
+                                                                   ('GroupExecute', 'group_execute', 0o0010),
+                                                                   ('OthersAll', 'others_all', 0o0007),
+                                                                   ('OthersRead', 'others_read', 0o0004),
+                                                                   ('OthersWrite', 'others_write', 0o0002),
+                                                                   ('OthersExecute', 'others_execute', 0o0001)])
 
 FILE_ORIGIN_CONSTANTS = ('FileOrigin', 'file_origin', [('Beginning', 'beginning', 0),
                                                        ('Current', 'current', 1),

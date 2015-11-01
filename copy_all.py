@@ -69,7 +69,7 @@ for f in os.listdir(src_file_path):
 
         if files_are_not_the_same(src_file, dest_path):
             shutil.copy(src_file, dest_path)
-            print(' * {0}'.format(f))
+            print((' * {0}'.format(f)))
 
 doc_copy = [('_Brick_', 'Bricks'),
             ('_Bricklet_', 'Bricklets'),
@@ -79,7 +79,7 @@ labview_image_path = 'doc/en/source/Images/Screenshots/LabVIEW'
 
 print('')
 for lang in ['en', 'de']:
-    print("Copying '{0}' documentation and examples:".format(lang))
+    print(("Copying '{0}' documentation and examples:".format(lang)))
 
     for t in doc_copy:
         dest_dir = os.path.join(start_path, doc_path.format(lang), t[1])
@@ -107,11 +107,11 @@ for lang in ['en', 'de']:
 
                     if files_are_not_the_same(src_file, dest_path):
                         shutil.copy(src_file, dest_path)
-                        print(' * {0}'.format(f))
+                        print((' * {0}'.format(f)))
 
 print('')
 for lang in ['en', 'de']:
-    print('Copying Tinkerforge.js to doc/{0}:'.format(lang))
+    print(('Copying Tinkerforge.js to doc/{0}:'.format(lang)))
     src_file = os.path.join(path, 'javascript', 'Tinkerforge.js')
 
     dest_dir = os.path.join(start_path, doc_path.format(lang), t[1])

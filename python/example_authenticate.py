@@ -28,7 +28,7 @@ def cb_connected(connect_reason):
 # Print incoming enumeration
 def cb_enumerate(uid, connected_uid, position, hardware_version, firmware_version,
                  device_identifier, enumeration_type):
-    print("UID: " + uid + ", Enumeration Type: " + str(enumeration_type))
+    print(("UID: " + uid + ", Enumeration Type: " + str(enumeration_type)))
 
 if __name__ == "__main__":
     # Create IPConnection
@@ -43,5 +43,5 @@ if __name__ == "__main__":
     # Connect to brickd
     ipcon.connect(HOST, PORT)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    eval(input("Press key to exit\n")) # Use input() in Python 3
     ipcon.disconnect()

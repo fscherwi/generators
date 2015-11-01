@@ -9,18 +9,18 @@ from tinkerforge.ip_connection import IPConnection
 # Print incoming enumeration
 def cb_enumerate(uid, connected_uid, position, hardware_version, firmware_version,
                  device_identifier, enumeration_type):
-    print("UID:               " + uid)
-    print("Enumeration Type:  " + str(enumeration_type))
+    print(("UID:               " + uid))
+    print(("Enumeration Type:  " + str(enumeration_type)))
 
     if enumeration_type == IPConnection.ENUMERATION_TYPE_DISCONNECTED:
         print("")
         return
 
-    print("Connected UID:     " + connected_uid)
-    print("Position:          " + position)
-    print("Hardware Version:  " + str(hardware_version))
-    print("Firmware Version:  " + str(firmware_version))
-    print("Device Identifier: " + str(device_identifier))
+    print(("Connected UID:     " + connected_uid))
+    print(("Position:          " + position))
+    print(("Hardware Version:  " + str(hardware_version)))
+    print(("Firmware Version:  " + str(firmware_version)))
+    print(("Device Identifier: " + str(device_identifier)))
     print("")
 
 if __name__ == "__main__":
@@ -34,5 +34,5 @@ if __name__ == "__main__":
     # Trigger Enumerate
     ipcon.enumerate()
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    eval(input("Press key to exit\n")) # Use input() in Python 3
     ipcon.disconnect()

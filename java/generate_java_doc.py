@@ -33,7 +33,7 @@ import re
 
 sys.path.append(os.path.split(os.getcwd())[0])
 import common
-import java_common
+from . import java_common
 
 class JavaDocDevice(java_common.JavaDevice):
     def replace_java_function_links(self, text):
@@ -479,5 +479,5 @@ def generate(bindings_root_directory, language):
 
 if __name__ == "__main__":
     for language in ['en', 'de']:
-        print("=== Generating %s ===" % language)
+        print(("=== Generating %s ===" % language))
         generate(os.getcwd(), language)

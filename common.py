@@ -481,7 +481,7 @@ def copy_examples(copy_files, path):
         doc_dest = os.path.join(doc_path, copy_file[1])
         doc_src = copy_file[0]
         shutil.copy(doc_src, doc_dest)
-        print('   - {0}'.format(copy_file[1]))
+        print(('   - {0}'.format(copy_file[1])))
 
     if len(copy_files) == 0:
         print('   \033[01;31m! No examples\033[0m')
@@ -597,7 +597,7 @@ def handle_rst_substitutions(text, packet):
     if len(subsitutions) == 0:
         return text
 
-    for key, value in subsitutions.items():
+    for key, value in list(subsitutions.items()):
         text = text.replace('|' + key + '|', value)
 
     return text
@@ -678,9 +678,9 @@ def generate(bindings_root_directory, language, generator_class):
         if config.endswith('_config.py'):
             com = copy.deepcopy(__import__(config[:-3]).com)
             if com['released']:
-                print(' * {0}'.format(config[:-10]))
+                print((' * {0}'.format(config[:-10])))
             else:
-                print(' * {0} \033[01;36m(not released)\033[0m'.format(config[:-10]))
+                print((' * {0} \033[01;36m(not released)\033[0m'.format(config[:-10])))
 
             def prepare_common_packets(common_packets):
                 for common_packet in common_packets:
@@ -697,7 +697,7 @@ def generate(bindings_root_directory, language, generator_class):
                     if common_packet['since_firmware'] is None:
                         common_packet['to_be_removed'] = True
 
-                return filter(lambda x: 'to_be_removed' not in x, common_packets)
+                return [x for x in common_packets if 'to_be_removed' not in x]
 
             if 'brick_' in config and 'common_included' not in com:
                 common_packets = copy.deepcopy(common_device_packets) + copy.deepcopy(common_brick_packets)
@@ -1213,7 +1213,7 @@ class Packet(NameMixin):
         filtered_subsitutions = {}
         bindings_name = self.get_generator().get_bindings_name()
 
-        for key, value in subsitutions.items():
+        for key, value in list(subsitutions.items()):
             if bindings_name in value:
                 filtered_subsitutions[key] = value[bindings_name]
             else:
@@ -1280,7 +1280,7 @@ class Device(NameMixin):
 
         check_name(raw_data['name'][0], raw_data['name'][1], raw_data['name'][2], raw_data['name'][3], device_category=raw_data['category'])
 
-        for i, raw_packet in zip(range(len(raw_data['packets'])), raw_data['packets']):
+        for i, raw_packet in zip(list(range(len(raw_data['packets']))), raw_data['packets']):
             if not 'function_id' in raw_packet:
                 raw_packet['function_id'] = i + 1
 
@@ -1602,9 +1602,9 @@ class ExamplesTester:
         src = cookie[0]
 
         if self.comment != None:
-            print('>>> [{0}] testing {1}'.format(self.comment, src))
+            print(('>>> [{0}] testing {1}'.format(self.comment, src)))
         else:
-            print('>>> testing {0}'.format(src))
+            print(('>>> testing {0}'.format(src)))
 
         output = output.strip()
 
@@ -1634,7 +1634,7 @@ class ExamplesTester:
             shutil.copy(os.path.join(self.path, self.zipname), tmp_dir)
 
             # unzip
-            print('>>> unpacking {0} to {1}'.format(self.zipname, tmp_dir))
+            print(('>>> unpacking {0} to {1}'.format(self.zipname, tmp_dir)))
 
             args = ['/usr/bin/unzip',
                     '-q',
@@ -1643,10 +1643,10 @@ class ExamplesTester:
             rc = subprocess.call(args)
 
             if rc != 0:
-                print('### could not unpack {0}'.format(self.zipname))
+                print(('### could not unpack {0}'.format(self.zipname)))
                 return False
 
-            print('>>> unpacking {0} done\n'.format(self.zipname))
+            print(('>>> unpacking {0} done\n'.format(self.zipname)))
 
             # test
             for subdir in self.subdirs:
@@ -1660,11 +1660,11 @@ class ExamplesTester:
 
         # report
         if self.comment != None:
-            print('### [{0}] {1} file(s) tested, {2} test(s) succeded, {3} failure(s) occurred'
-                  .format(self.comment, self.test_count, self.success_count, self.failure_count))
+            print(('### [{0}] {1} file(s) tested, {2} test(s) succeded, {3} failure(s) occurred'
+                  .format(self.comment, self.test_count, self.success_count, self.failure_count)))
         else:
-            print('### {0} file(s) tested, {1} test(s) succeded, {2} failure(s) occurred'
-                  .format(self.test_count, self.success_count, self.failure_count))
+            print(('### {0} file(s) tested, {1} test(s) succeded, {2} failure(s) occurred'
+                  .format(self.test_count, self.success_count, self.failure_count)))
 
         return self.failure_count == 0
 
@@ -1692,9 +1692,9 @@ class SourceTester:
         self.test_count += 1
 
         if self.comment is not None:
-            print('>>> [{0}] testing {1}'.format(self.comment, src))
+            print(('>>> [{0}] testing {1}'.format(self.comment, src)))
         else:
-            print('>>> testing {0}'.format(src))
+            print(('>>> testing {0}'.format(src)))
 
         if not self.test(src):
             self.failure_count += 1
@@ -1722,7 +1722,7 @@ class SourceTester:
             shutil.copy(os.path.join(self.path, self.zipname), tmp_dir)
 
             # unzip
-            print('>>> unpacking {0} to {1}'.format(self.zipname, tmp_dir))
+            print(('>>> unpacking {0} to {1}'.format(self.zipname, tmp_dir)))
 
             args = ['/usr/bin/unzip',
                     '-q',
@@ -1731,10 +1731,10 @@ class SourceTester:
             rc = subprocess.call(args)
 
             if rc != 0:
-                print('### could not unpack {0}'.format(self.zipname))
+                print(('### could not unpack {0}'.format(self.zipname)))
                 return False
 
-            print('>>> unpacking {0} done\n'.format(self.zipname))
+            print(('>>> unpacking {0} done\n'.format(self.zipname)))
 
             if not self.after_unzip():
                 return False
@@ -1745,9 +1745,9 @@ class SourceTester:
 
             # report
             if self.comment is not None:
-                print('### [{0}] {1} files tested, {2} failure(s) occurred'.format(self.comment, self.test_count, self.failure_count))
+                print(('### [{0}] {1} files tested, {2} failure(s) occurred'.format(self.comment, self.test_count, self.failure_count)))
             else:
-                print('### {0} files tested, {1} failure(s) occurred'.format(self.test_count, self.failure_count))
+                print(('### {0} files tested, {1} failure(s) occurred'.format(self.test_count, self.failure_count)))
 
         return self.failure_count == 0
 
